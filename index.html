@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru" dir="ltr">
+<!doctype html>
+<html lang="ru">
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Интеграция Битрикс24 с Bizon</title>
-  <!-- Подключаем стили от Тайга -->
-  <link rel="stylesheet" href="https://static.tinkoff.ru/ui-kit/1.12.7/css/tinkoff-icons.css" />
-  <link rel="stylesheet" href="https://static.tinkoff.ru/ui-kit/1.12.7/css/tinkoff-ui-kit.min.css" />
+  <!-- Подключаем стили Tinkoff -->
+  <link rel="stylesheet" href="https://static.tinkoff.ru/ui-kit/1.12.7/css/tinkoff-icons.css">
+  <link rel="stylesheet" href="https://static.tinkoff.ru/ui-kit/1.12.7/css/tinkoff-ui-kit.min.css">
   <link rel="stylesheet" href="custom.css">
 </head>
 
@@ -16,29 +14,34 @@
   <div class="container">
     <h2>Доступ к Bizon</h2>
     <div class="row justify-content-center">
-      <a href="https://bizon365.ru/" class="btn btn-primary btn-md">Перейти на Bizon</a>
+      <button mat-raised-button color="primary" href="https://bizon365.ru/">Перейти на Bizon</button>
     </div>
-    <form id="bizon-form">
+
+    <form #bizonForm="ngForm">
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Введите email" required>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Введите email" required
+          [(ngModel)]="bizonEmail">
       </div>
       <div class="form-group">
         <label for="api-key">API-токен:</label>
-        <input type="text" id="api-key" name="api-key" class="form-control" placeholder="Введите API-токен" required>
+        <input type="text" id="api-key" name="api-key" class="form-control" placeholder="Введите API-токен" required
+          [(ngModel)]="bizonApiKey">
       </div>
-      <button type="submit" class="btn btn-primary">Сохранить</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!bizonForm.form.valid">Сохранить</button>
     </form>
+
     <h2>ВАЖНО</h2>
     <p>Чтобы получить API-токен для сервиса Бизон365, необходимо выполнить следующие действия:</p>
-    <ul>
+    <ol>
       <li>Зайти в личный кабинет на сайте сервиса Bizon365</li>
       <li>Перейти в раздел "Настройки" - "API доступ"</li>
       <li>Нажать кнопку "Создать ключ" и указать название ключа</li>
       <li>После успешного создания ключа он будет отображаться в списке доступных ключей вместе с его значением.</li>
-    </ul>
+    </ol>
   </div>
-  <!-- Подключаем скрипты от Тайга -->
+
+  <!-- Подключаем скрипты Tinkoff -->
   <script src="https://widget.turbopage.co/scripts/turbopage.min.js"></script>
 </body>
 
